@@ -15,12 +15,12 @@ namespace Taschenrechner_Iteration_1
             Console.Write("Bitte gib den zweiten Summanden ein: ");
             string zweiterSummand = Console.ReadLine();
 
-            //Wandeln Text in Ganzzahlen
-            int ersterSummandAlsZahl = Convert.ToInt32(ersterSummand);
-            int zweiterSummandAlsZahl = Convert.ToInt32(zweiterSummand);
+            //Wandeln Text in Gleitkommazahlen
+            float ersterSummandAlsZahl = Convert.ToSingle(ersterSummand);
+            float zweiterSummandAlsZahl = Convert.ToSingle(zweiterSummand);
 
             //Berechnung ausführen
-            int summe = ersterSummandAlsZahl + zweiterSummandAlsZahl;
+            float summe = ersterSummandAlsZahl + zweiterSummandAlsZahl;
 
             //Ausgabe
             Console.WriteLine("Die Summe ist: : {0}" , summe);
