@@ -2,7 +2,7 @@
 
 // hier ein weiterer Kommentar
 
-namespace Taschenrechner_Iteration_1
+namespace Taschenrechner
 {
     class Program
     {
