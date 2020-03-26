@@ -31,6 +31,20 @@ using System.Runtime.InteropServices;
 //
 // Sie können alle Werte angeben oder Standardwerte für die Build- und Revisionsnummern verwenden,
 // indem Sie "*" wie unten gezeigt eingeben:
- [assembly: AssemblyVersion("1.0.*")]
+/*
+ 1. Unload Project from visual studio and edit .csproj file Or open .csproj solution file in editor.
+ 2. Search for tag and Change value from true to false <deterministic>false</deterministic>
+ 3. Save file and reload project again inside Visual studio
+     <propertygroup>
+        <configuration condition=" '$(Configuration)' == '' ">Debug</configuration>
+        <platform condition=" '$(Platform)' == '' ">AnyCPU</platform>
+        <projectguid>{76602FA1-9AD8-4014-BA5D-2E9128C19AB2}</projectguid>
+        <targetframeworkversion>v4.7</targetframeworkversion>
+        <filealignment>512</filealignment>
+        <autogeneratebindingredirects>true</autogeneratebindingredirects>
+        <deterministic>false</deterministic>  !!!!
+      </propertygroup>
+ */
+[assembly: AssemblyVersion("1.0.*")]
 //[assembly: AssemblyVersion("1.0.0.0")]
 //[assembly: AssemblyFileVersion("1.0.0.0")]
