@@ -27,21 +27,28 @@ namespace Taschenrechner
             double zweiteZahl = Convert.ToDouble(zweiteZahlAlsString);
 
             //Berechnung ausführen
-            double resultat;
+            double resultat = 0;
 
-            if (operation == "+")
+            switch (operation)
             {
-                resultat = Addiere(ersteZahl, zweiteZahl);
-                Console.WriteLine("Die Summe ist: : {0}", resultat);
-            }
-            else if (operation == "-")
-            {
-                resultat = Subtrahiere(ersteZahl, zweiteZahl);
-                Console.WriteLine("Die Differenz ist: : {0}", resultat);
-            }
-            else
-            {
-                Console.WriteLine("Du hast eine ungültige Auswahl der Operation gewählt !");
+                case "+":
+                    resultat = Addiere(ersteZahl, zweiteZahl);
+                    Console.WriteLine("Die Summe ist: : {0}", resultat);
+                    break;
+
+                case "-":
+                    resultat = Subtrahiere(ersteZahl, zweiteZahl);
+                    Console.WriteLine("Die Differenz ist: : {0}", resultat);
+                    break;
+
+                case "/":
+                case "*":
+                    Console.WriteLine("Noch nicht implementiert, Kommt noch, versprochen !");
+                    break;
+
+                default:
+                    Console.WriteLine("Du hast eine ungültige Auswahl der Operation gewählt !");
+                    break;
             }
 
             //Ausgabe
