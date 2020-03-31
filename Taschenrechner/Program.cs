@@ -42,8 +42,13 @@ namespace Taschenrechner
                     break;
 
                 case "/":
+                    resultat = Dividiere(ersteZahl, zweiteZahl);
+                    Console.WriteLine("Die Quotient ist: : {0}", resultat);
+                    break;
+
                 case "*":
-                    Console.WriteLine("Noch nicht implementiert, Kommt noch, versprochen !");
+                    resultat = Multipliziere(ersteZahl, zweiteZahl);
+                    Console.WriteLine("Die Produkt ist: : {0}", resultat);
                     break;
 
                 default:
@@ -75,6 +80,18 @@ namespace Taschenrechner
             double differenz = minuend - subtrahend;
 
             return differenz;
+        }
+        static double Multipliziere(double multiplicator, double multiplicand)
+        {
+            double produkt = multiplicator * multiplicand;
+
+            return produkt;
+        }
+        static double Dividiere(double dividend, double divisor)
+        {
+            double quotient = dividend / divisor;
+
+            return quotient;
         }
     }
 }
