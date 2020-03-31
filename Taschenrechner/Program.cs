@@ -18,6 +18,7 @@ namespace Taschenrechner
         static void Main(string[] args)
         {
             // User Story "Addieren": Als Benutzer möchte ich zwei Zahlen eingeben, um deren Summe berechnen zu lassen
+         
             string ersteZahlAlsString = HoleBenutzerEingabe("Bitte gib die erste Zahl ein: ");
             string zweiteZahlAlsString = HoleBenutzerEingabe("Bitte gib die zweite Zahl ein: ");
             string operation = HoleBenutzerEingabe("Bitte wähle die auszuführende Operation (+ - / *) aus: ");
@@ -27,27 +28,31 @@ namespace Taschenrechner
             double zweiteZahl = Convert.ToDouble(zweiteZahlAlsString);
 
             //Berechnung ausführen
-            double resultat = 0;
+            double resultat = Berechnung(ersteZahl, zweiteZahl, operation);
+
+            //Ausgabe
+            GibResultatAus(resultat, operation);
+            HoleBenutzerEingabe("Zum Beenden bitte RETURN drücken! ");
+        }
+
+        private static void GibResultatAus(double resultat, string operation)
+        {
 
             switch (operation)
             {
                 case "+":
-                    resultat = Addiere(ersteZahl, zweiteZahl);
                     Console.WriteLine("Die Summe ist: : {0}", resultat);
                     break;
 
                 case "-":
-                    resultat = Subtrahiere(ersteZahl, zweiteZahl);
                     Console.WriteLine("Die Differenz ist: : {0}", resultat);
                     break;
 
                 case "/":
-                    resultat = Dividiere(ersteZahl, zweiteZahl);
                     Console.WriteLine("Die Quotient ist: : {0}", resultat);
                     break;
 
                 case "*":
-                    resultat = Multipliziere(ersteZahl, zweiteZahl);
                     Console.WriteLine("Die Produkt ist: : {0}", resultat);
                     break;
 
@@ -55,9 +60,6 @@ namespace Taschenrechner
                     Console.WriteLine("Du hast eine ungültige Auswahl der Operation gewählt !");
                     break;
             }
-
-            //Ausgabe
-            HoleBenutzerEingabe("Zum Beenden bitte RETURN drücken! ");
         }
 
         static string HoleBenutzerEingabe(string ausgabeText)
@@ -66,6 +68,37 @@ namespace Taschenrechner
             string summand = Console.ReadLine();
 
             return summand;
+        }
+
+        static double Berechnung(double ersteZahl, double zweiteZahl, string operation)
+        {
+            double resultat = 0;
+
+            switch (operation)
+            {
+                case "+":
+                    resultat = Addiere(ersteZahl, zweiteZahl);
+                    break;
+
+                case "-":
+                    resultat = Subtrahiere(ersteZahl, zweiteZahl);
+                    break;
+
+                case "/":
+                    resultat = Dividiere(ersteZahl, zweiteZahl);
+                    break;
+
+                case "*":
+                    resultat = Multipliziere(ersteZahl, zweiteZahl);
+                    break;
+
+                default:
+                    resultat = 0;
+                    break;
+            }
+
+            return resultat;
+
         }
 
         static double Addiere(double ersteZahlAlsString, double zweiteZahlAlsString)
@@ -81,17 +114,16 @@ namespace Taschenrechner
 
             return differenz;
         }
-        static double Multipliziere(double multiplicator, double multiplicand)
+    
+        static double Multipliziere(double multiplikator, double multiplikand)
         {
-            double produkt = multiplicator * multiplicand;
-
-            return produkt;
+            return multiplikator * multiplikand;
         }
+    
         static double Dividiere(double dividend, double divisor)
         {
-            double quotient = dividend / divisor;
-
-            return quotient;
+            return dividend / divisor;
         }
+
     }
 }
