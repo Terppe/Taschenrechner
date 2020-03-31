@@ -15,27 +15,40 @@ namespace Taschenrechner
         // Geschweifte Klammern einfügen
         // Methode implementieren (Anweisungen in den Methodenrumpf schreiben)
 
-
         static void Main(string[] args)
         {
             // User Story "Addieren": Als Benutzer möchte ich zwei Zahlen eingeben, um deren Summe berechnen zu lassen
-            string ersterSummand = HoleSummanden("Bitte gib den ersten Summanden ein: ");
-            string zweiterSummand = HoleSummanden("Bitte gib den zweiten Summanden ein: ");
+            string ersteZahlAlsString = HoleBenutzerEingabe("Bitte gib die erste Zahl ein: ");
+            string zweiteZahlAlsString = HoleBenutzerEingabe("Bitte gib die zweite Zahl ein: ");
+            string operation = HoleBenutzerEingabe("Bitte wähle die auszuführende Operation (+ - / *) aus: ");
 
             //Wandeln Text in Gleitkommazahlen
-            double ersterSummandAlsZahl = Convert.ToDouble(ersterSummand);
-            double zweiterSummandAlsZahl = Convert.ToDouble(zweiterSummand);
+            double ersteZahl = Convert.ToDouble(ersteZahlAlsString);
+            double zweiteZahl = Convert.ToDouble(zweiteZahlAlsString);
 
             //Berechnung ausführen
-            double summe = Addiere(ersterSummandAlsZahl, zweiterSummandAlsZahl);
+            double resultat;
+
+            if (operation == "+")
+            {
+                resultat = Addiere(ersteZahl, zweiteZahl);
+                Console.WriteLine("Die Summe ist: : {0}", resultat);
+            }
+            else if (operation == "-")
+            {
+                resultat = Subtrahiere(ersteZahl, zweiteZahl);
+                Console.WriteLine("Die Differenz ist: : {0}", resultat);
+            }
+            else
+            {
+                Console.WriteLine("Du hast eine ungültige Auswahl der Operation gewählt !");
+            }
 
             //Ausgabe
-            Console.WriteLine("Die Summe ist: : {0}" , summe);
-
-            WarteAufBenutzerEingabe();
+            HoleBenutzerEingabe("Zum Beenden bitte RETURN drücken! ");
         }
 
-        static string HoleSummanden(string ausgabeText)
+        static string HoleBenutzerEingabe(string ausgabeText)
         {
             Console.Write(ausgabeText);
             string summand = Console.ReadLine();
@@ -43,19 +56,18 @@ namespace Taschenrechner
             return summand;
         }
 
-        static double Addiere(double ersterSummand, double zweiterSummand)
+        static double Addiere(double ersteZahlAlsString, double zweiteZahlAlsString)
         {
-            double summe = ersterSummand + zweiterSummand;
+            double summe = ersteZahlAlsString + zweiteZahlAlsString;
 
             return summe;
         }
 
-        static void WarteAufBenutzerEingabe()
+        static double Subtrahiere(double minuend, double subtrahend)
         {
-            Console.Write("Zum Beenden bitte RETURN drücken! ");
+            double differenz = minuend - subtrahend;
 
-            Console.ReadLine();
-
+            return differenz;
         }
     }
 }
