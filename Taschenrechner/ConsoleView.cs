@@ -13,6 +13,25 @@ namespace Taschenrechner
         {
             this._model = model;
         }
+
+        public string HoleZahlVomBenutzer()
+        {
+            Console.Write("Bitte gib eine Zahl für die Berechnung ein: ");
+            return Console.ReadLine();
+        }
+
+        public string HoleOperatorVomBenutzer()
+        {
+            Console.Write("Bitte gib die auszuführende Operation ein (+, -, *, /): ");
+            return Console.ReadLine();
+        }
+
+        public void WarteAufEndeDurchbenutzer()
+        {
+            Console.Write("Zum Beenden bitte RETURN drücken! ");
+            Console.ReadLine();
+        }
+
         public string HoleBenutzerEingabe(string ausgabeText)
         {
             Console.Write(ausgabeText);
