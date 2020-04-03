@@ -7,31 +7,37 @@ using System.Threading.Tasks;
 namespace Taschenrechner
 {   class ConsoleView
     {
+        private RechnerModel _model;
+
+        public ConsoleView(RechnerModel model)
+        {
+            this._model = model;
+        }
         public string HoleBenutzerEingabe(string ausgabeText)
         {
             Console.Write(ausgabeText);
             return Console.ReadLine(); ;
         }
 
-        public static void GibResultatAus(double resultat, string operation)
+        public void GibResultatAus(string operation)
         {
 
             switch (operation)
             {
                 case "+":
-                    Console.WriteLine("Die Summe ist: : {0}", resultat);
+                    Console.WriteLine("Die Summe ist: : {0}", _model.Resultat);
                     break;
 
                 case "-":
-                    Console.WriteLine("Die Differenz ist: : {0}", resultat);
+                    Console.WriteLine("Die Differenz ist: : {0}", _model.Resultat);
                     break;
 
                 case "/":
-                    Console.WriteLine("Die Quotient ist: : {0}", resultat);
+                    Console.WriteLine("Die Quotient ist: : {0}", _model.Resultat);
                     break;
 
                 case "*":
-                    Console.WriteLine("Die Produkt ist: : {0}", resultat);
+                    Console.WriteLine("Die Produkt ist: : {0}", _model.Resultat);
                     break;
 
                 default:
