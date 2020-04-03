@@ -28,10 +28,11 @@ namespace Taschenrechner
             double zweiteZahl = Convert.ToDouble(zweiteZahlAlsString);
 
             //Berechnung ausführen
-            double resultat = Berechnung(ersteZahl, zweiteZahl, operation);
+            RechnerModel model = new RechnerModel();
+            model.Berechne(ersteZahl, zweiteZahl, operation);
 
             //Ausgabe
-            GibResultatAus(resultat, operation);
+            GibResultatAus(model.Resultat, operation);
             HoleBenutzerEingabe("Zum Beenden bitte RETURN drücken! ");
         }
 
@@ -70,60 +71,6 @@ namespace Taschenrechner
             return summand;
         }
 
-        static double Berechnung(double ersteZahl, double zweiteZahl, string operation)
-        {
-            double resultat = 0;
-
-            switch (operation)
-            {
-                case "+":
-                    resultat = Addiere(ersteZahl, zweiteZahl);
-                    break;
-
-                case "-":
-                    resultat = Subtrahiere(ersteZahl, zweiteZahl);
-                    break;
-
-                case "/":
-                    resultat = Dividiere(ersteZahl, zweiteZahl);
-                    break;
-
-                case "*":
-                    resultat = Multipliziere(ersteZahl, zweiteZahl);
-                    break;
-
-                default:
-                    resultat = 0;
-                    break;
-            }
-
-            return resultat;
-
-        }
-
-        static double Addiere(double ersteZahlAlsString, double zweiteZahlAlsString)
-        {
-            double summe = ersteZahlAlsString + zweiteZahlAlsString;
-
-            return summe;
-        }
-
-        static double Subtrahiere(double minuend, double subtrahend)
-        {
-            double differenz = minuend - subtrahend;
-
-            return differenz;
-        }
-    
-        static double Multipliziere(double multiplikator, double multiplikand)
-        {
-            return multiplikator * multiplikand;
-        }
-    
-        static double Dividiere(double dividend, double divisor)
-        {
-            return dividend / divisor;
-        }
 
     }
 }
