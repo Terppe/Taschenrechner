@@ -17,11 +17,11 @@ namespace Taschenrechner
 
         static void Main(string[] args)
         {
-            // User Story "Addieren": Als Benutzer möchte ich zwei Zahlen eingeben, um deren Summe berechnen zu lassen
-         
-            string ersteZahlAlsString = HoleBenutzerEingabe("Bitte gib die erste Zahl ein: ");
-            string zweiteZahlAlsString = HoleBenutzerEingabe("Bitte gib die zweite Zahl ein: ");
-            string operation = HoleBenutzerEingabe("Bitte wähle die auszuführende Operation (+ - / *) aus: ");
+            ConsoleView view = new ConsoleView();
+
+                string ersteZahlAlsString = view.HoleBenutzerEingabe("Bitte gib die erste Zahl ein: ");
+            string zweiteZahlAlsString = view.HoleBenutzerEingabe("Bitte gib die zweite Zahl ein: ");
+            string operation = view.HoleBenutzerEingabe("Bitte wähle die auszuführende Operation (+ - / *) aus: ");
 
             //Wandeln Text in Gleitkommazahlen
             double ersteZahl = Convert.ToDouble(ersteZahlAlsString);
