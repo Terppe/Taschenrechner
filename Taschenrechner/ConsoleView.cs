@@ -7,20 +7,62 @@ using System.Threading.Tasks;
 namespace Taschenrechner
 {   class ConsoleView
     {
-        private RechnerModel _model;
+        private readonly RechnerModel _model;
 
         public ConsoleView(RechnerModel model)
         {
             this._model = model;
+            BenutzerWillBeenden = false;
         }
 
-        public double HoleZahlVomBenutzer()
+        public void HoleEingabenVomBenutzer()
+        { }
+
+        
+        public bool BenutzerWillBeenden { get; private set; }
+
+        public void HoleEingabenFuerErsteBerechnungVomBenutzer()
         {
-            Console.Write("Bitte gib eine Zahl für die Berechnung ein: ");
-            return Convert.ToDouble(Console.ReadLine());
+            _model.ErsteZahl = HoleZahlVomBenutzer();
+            _model.Operation = HoleOperatorVomBenutzer();
+            _model.ZweiteZahl = HoleZahlVomBenutzer();
+
         }
 
-        public string HoleOperatorVomBenutzer()
+        public void HoleEingabenFuerFortlaufendeBerechnung()
+        {
+            string eingabe = HoleNaechsteAktionVomBenutzer();
+
+            if (eingabe == "Fertig")
+            {
+                BenutzerWillBeenden = true;
+            }
+            else
+            {
+                _model.ErsteZahl = _model.Resultat;
+                _model.ZweiteZahl = Convert.ToDouble(eingabe);
+            }
+        }
+
+        private string HoleNaechsteAktionVomBenutzer()
+        {
+            Console.Write("Bitte gib eine weitere Zahl ein (Fertig zum Beenden): ");
+            return Console.ReadLine();
+        }
+        private double HoleZahlVomBenutzer()
+        {
+            string zahl;
+            Console.Write("Bitte gib eine Zahl für die Berechnung ein: ");
+            zahl = Console.ReadLine();
+            return Convert.ToDouble(zahl);
+        }
+
+        public void WarteAufEndeDurchBenutzer()
+        {
+            Console.Write("Zum beenden bitte Return drücken!");
+            Console.ReadLine();
+        }
+        private string HoleOperatorVomBenutzer()
         {
             Console.Write("Bitte gib die auszuführende Operation ein (+, -, *, /): ");
             return Console.ReadLine();
@@ -30,12 +72,6 @@ namespace Taschenrechner
         {
             Console.Write("Zum Beenden bitte RETURN drücken! ");
             Console.ReadLine();
-        }
-
-        public string HoleBenutzerEingabe(string ausgabeText)
-        {
-            Console.Write(ausgabeText);
-            return Console.ReadLine(); ;
         }
 
         public void GibResultatAus()

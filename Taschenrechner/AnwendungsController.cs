@@ -8,27 +8,28 @@ namespace Taschenrechner
 {
     class AnwendungsController
     {
-        private ConsoleView view;
-        private RechnerModel model;
+        private readonly ConsoleView _view;
+        private readonly RechnerModel _model;
 
         public AnwendungsController(ConsoleView view, RechnerModel model)
         {
-            this.view = view;
-            this.model = model;
+            this._view = view;
+            this._model = model;
         }
 
         public void Ausführen()
         {
-            double ersteZahl = view.HoleZahlVomBenutzer();
-            string operation = view.HoleOperatorVomBenutzer();
-            double zweiteZahl = view.HoleZahlVomBenutzer();
+            _view.HoleEingabenFuerErsteBerechnungVomBenutzer();
+            _model.Berechne();
+            _view.GibResultatAus();
+            _view.HoleEingabenFuerFortlaufendeBerechnung();
 
-            //Berechnung ausführen
-            model.Berechne(ersteZahl, zweiteZahl, operation);
-
-            //Ausgabe
-            view.GibResultatAus();
-            view.WarteAufEndeDurchbenutzer();
+            while (!_view.BenutzerWillBeenden)
+            {
+                _model.Berechne();
+                _view.GibResultatAus();
+                _view.HoleEingabenFuerFortlaufendeBerechnung();
+            }
         }
     }
 }

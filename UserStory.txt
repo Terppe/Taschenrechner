@@ -17,9 +17,10 @@ Story: Als Benutzer möchte ich eine weitere Zahl eingeben, um die vorherige Oper
 Akzeptanzkriterien:
 	* Gleitkommazahlen zwischen -10.0 und 100.0 können eingegeben werden
 	* Die Operation aus der vorherigen Berechnung wird nochmals verwendet
-	* Das neue Resultat wird ausgegeben ohne weitere Intwraktion mit dem Benutzer
+	* Das neue Resultat wird ausgegeben ohne weitere Interaktion mit dem Benutzer wieder verwendet
 Status:
-	* Offen
+•	Umgesetzt
+*	Erledigt
 
 ************************************
 Titel: ObjektOrientierung
