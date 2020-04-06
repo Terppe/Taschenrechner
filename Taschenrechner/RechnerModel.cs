@@ -69,8 +69,5 @@ namespace Taschenrechner
             return dividend / divisor;
         }
 
-        public int Test { get; set; }
-
-        
     }
 }

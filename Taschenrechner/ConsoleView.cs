@@ -51,10 +51,24 @@ namespace Taschenrechner
         }
         private double HoleZahlVomBenutzer()
         {
-            string zahl;
+            string eingabe;
+            double zahl;
             Console.Write("Bitte gib eine Zahl für die Berechnung ein: ");
-            zahl = Console.ReadLine();
-            return Convert.ToDouble(zahl);
+            eingabe = Console.ReadLine();
+
+            while (!double.TryParse(eingabe, out zahl))
+            {
+                Console.WriteLine("Du musst eine gültige Gleitkommatahl eingeben! ");
+                Console.WriteLine("Neben den Ziffern 0-9 sind lediglich die folgenden Sonderzeichen erlaubt: ,.- ");
+                Console.WriteLine("Dabei muss das - als erstes Zeichen vor einer Ziffer gestzt werden.");
+                Console.WriteLine("Der . fungiert als Trennzeichen an Tausenderstellen. ");
+                Console.WriteLine("Das , ist das Trennzeichen für die Nachkommastellen. ");
+                Console.WriteLine("Alle drei Sonderzeichen sind optional! ");
+                Console.WriteLine();
+                Console.Write("Bitte gib erneut die Zahl für die Berechnung ein: ");
+                eingabe = Console.ReadLine();
+            }
+            return zahl;
         }
 
         public void WarteAufEndeDurchBenutzer()

@@ -11,6 +11,17 @@ Status:
 	* Offen
 
 ************************************
+Titel: Validieren der Eingabe
+Story: Als Benutzer möchte ich sofort erkennen ob meine Eingabe richtig ist, um den Taschenrechner schnell und einfach bedienen zu können
+		
+Akzeptanzkriterien:
+	* Eine fehlerhafte Eingabe wird nach betätigen von Return sofort angezeigtn
+	* Der Benutzer bekommt Hinweise wie er Zahlen, Operationen und Kommandos richtig eingeben kann
+Status:
+•	Offen
+*	
+
+************************************
 Titel: Fortlaufende Berechnung
 Story: Als Benutzer möchte ich eine weitere Zahl eingeben, um die vorherige Operation nochmals auszuführen
 		mit dem vorherigen Resultat
