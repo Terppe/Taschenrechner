@@ -15,25 +15,44 @@ namespace Taschenrechner
             BenutzerWillBeenden = false;
         }
 
-        public void HoleEingabenVomBenutzer()
-        { }
-
         
         public bool BenutzerWillBeenden { get; private set; }
 
         public void HoleEingabenFuerErsteBerechnungVomBenutzer()
         {
-            _model.ErsteZahl = HoleZahlVomBenutzer();
-            _model.Operation = HoleOperatorVomBenutzer();
-            _model.ZweiteZahl = HoleZahlVomBenutzer();
+            // TODO: Refactoring benötigt - Probleme: unübersichtlich, nicht DRY, nicht SLA!
 
+            // Eingabe und Validierung der ersten Zahl
+            do
+            {
+                _model.ErsteZahl = HoleZahlVomBenutzer();
+                if (_model.AktuellerFehler == Fehler.GrenzwertUeberschreitung)
+                {
+                    Console.WriteLine("FEHLER: Zahl muss größer als {0} und kleiner als {1} sein.", RechnerModel.UntererGrenzwert, RechnerModel.ObererGrenzwert);
+                }
+            }
+            while (_model.AktuellerFehler == Fehler.GrenzwertUeberschreitung);
+
+            // Eingabe und Validierung des Operators
+            _model.Operation = HoleOperatorVomBenutzer();
+
+            // Eingabe und Validierung der zweiten Zahl
+            do
+            {
+                _model.ZweiteZahl = HoleZahlVomBenutzer();
+                if (_model.AktuellerFehler == Fehler.GrenzwertUeberschreitung)
+                {
+                    Console.WriteLine("FEHLER: Zahl muss größer als {0} und kleiner als {1} sein.", RechnerModel.UntererGrenzwert, RechnerModel.ObererGrenzwert);
+                }
+            }
+            while (_model.AktuellerFehler == Fehler.GrenzwertUeberschreitung);
         }
 
         public void HoleEingabenFuerFortlaufendeBerechnung()
         {
             string eingabe = HoleNaechsteAktionVomBenutzer();
 
-            if (eingabe == "Fertig")
+            if (eingabe.ToUpper() == "FERTIG")
             {
                 BenutzerWillBeenden = true;
             }
@@ -71,21 +90,24 @@ namespace Taschenrechner
             return zahl;
         }
 
-        public void WarteAufEndeDurchBenutzer()
-        {
-            Console.Write("Zum beenden bitte Return drücken!");
-            Console.ReadLine();
-        }
         private string HoleOperatorVomBenutzer()
         {
-            Console.Write("Bitte gib die auszuführende Operation ein (+, -, *, /): ");
-            return Console.ReadLine();
-        }
+            string operation;
 
-        public void WarteAufEndeDurchbenutzer()
-        {
-            Console.Write("Zum Beenden bitte RETURN drücken! ");
-            Console.ReadLine();
+            do
+            {
+                Console.Write("Bitte gib die auszuführende Operation ein (+, -, /, *): ");
+                operation = Console.ReadLine();
+                _model.Operation = operation;
+
+                if (_model.AktuellerFehler == Fehler.UngueltigeOperation)
+                {
+                    Console.WriteLine("FEHLER: Die eingegebene Operation wird nicht unterstützt.");
+                }
+            }
+            while (_model.AktuellerFehler == Fehler.UngueltigeOperation);
+
+            return operation;
         }
 
         public void GibResultatAus()
